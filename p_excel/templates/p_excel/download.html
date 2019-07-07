@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--<LINK REL="ICON" HREF="FAVICON.ICO">-->
+
+    <title>Download Excel Files</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'p_excel/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+   <!-- <link href="{% static 'p_excel/css/custom.css' %}" rel="stylesheet">-->
+  </head>
+
+  <body class="text-center">
+  <h1 class="display-4"> Download Excel Files</h1>
+   <div class="container" style="margin-bottom: 20px;">
+    <table class="table-striped">
+        <thead>
+            <tr>
+                <th>IPC</th>
+                <th>Title</th>
+                <th>Download Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in files %}
+                <tr>
+                    <td>{{ row.code }}</td>
+                    <td>{{ row.title }}</td>
+                    <td><a href="media/{{ row.filename }}" target="_blank">{{ row.filename }}</a> </td>
+                </tr>
+            {% endfor %}
+
+
+        </tbody>
+
+    </table>
+  <!--<P STYLE="PADDING: 30PX;">{{files}}</p>-->
+    </div>
+  </body>
+</html>

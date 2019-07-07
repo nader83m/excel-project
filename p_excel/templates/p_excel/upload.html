@@ -1,0 +1,83 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--<LINK REL="ICON" HREF="FAVICON.ICO">-->
+
+    <title>Upload Excel File</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'p_excel/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'p_excel/css/custom.css' %}" rel="stylesheet">
+      <script language="JavaScript">
+          function loading()
+          {
+             if(Validate()) {
+                 document.getElementById('frm1').style.display="none";
+                 document.getElementById('load').style.display="block";
+                 document.getElementById('frm1').submit();
+             }
+             else
+             {
+                 document.getElementById('error').style.display="block";
+             }
+
+          }
+
+        function Validate() {
+            var temp=document.getElementById("efile");
+            var fileName=temp.value;
+            var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+            //window.alert(ext);
+            if(ext == "xls" || ext == "XLS" || ext == "xlsx" || ext == "XLSX")
+            {
+                return true;
+            }
+            else
+            {
+               return false;
+            }
+        }
+      </script>
+  </head>
+
+  <body class="text-center">
+
+    <form id="frm1" class="form-signin" method="post" action="{% url 'excel_upload' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+      <img class="mb-4" src="{% static 'p_excel/image/mytest-o-b.png' %}" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Please Upload Excel File</h1>
+      <label for="inputfile" class="sr-only">Exel File</label>
+        {{ form.file }}
+
+      </div>
+      <button onclick="loading();" class="btn btn-lg btn-primary btn-block" type="button">Send</button>
+        <p class="text-danger" style="display: none;" id="error">Please Select an Excel File.</p>
+      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+    </form>
+      <div id="load" class="windows8" style="display: none;">
+        <div class="wBall" id="wBall_1">
+            <div class="wInnerBall"></div>
+        </div>
+        <div class="wBall" id="wBall_2">
+            <div class="wInnerBall"></div>
+        </div>
+        <div class="wBall" id="wBall_3">
+            <div class="wInnerBall"></div>
+        </div>
+        <div class="wBall" id="wBall_4">
+            <div class="wInnerBall"></div>
+        </div>
+        <div class="wBall" id="wBall_5">
+            <div class="wInnerBall"></div>
+        </div>
+
+    </div>
+  </body>
+</html>
